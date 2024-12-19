@@ -29,6 +29,7 @@ func main() {
 	}
 
 	fmt.Printf("Part1 Ans: %d\n", part1(input))
+	fmt.Printf("Part2 Ans: %d\n", part2(input))
 }
 
 func part1(input [][]int) int {
@@ -36,6 +37,22 @@ func part1(input [][]int) int {
 	for _, list := range input {
 		if isCorrectlyOrdered(list) {
 			count++
+		}
+	}
+	return count
+}
+
+func part2(input [][]int) int {
+	count := 0
+	for _, line := range input {
+		for i := 0; i < len(line); i++ {
+			var temp []int
+			temp = append(temp, line[:i]...)
+			temp = append(temp, line[i+1:]...)
+			if isCorrectlyOrdered(temp) {
+				count++
+				break
+			}
 		}
 	}
 	return count
